@@ -1,0 +1,52 @@
+---
+# tasks file for rke2_server
+
+- name: RKE2 agent and server tasks
+  vars:
+    rke2_common_caller_role_name: server
+  ansible.builtin.include_role:
+    name: rke2_common
+    tasks_from: main
+
+# Step 1: check if "rke2_token.txt" file exists
+- name: check if "rke2_token.txt" already exists
+  stat:
+    path: "{{ inventory_dir }}/rke2_token.txt"
+  register: token_file_stat
+  delegate_to: localhost 
+
+# Step 2: delte "rke2_token.txt" file if it exists
+- name: Delete the "rke2_token.txt" file if it exists
+  ansible.builtin.file:
+    path: "{{ inventory_dir }}/rke2_token.txt"
+    state: absent
+  when: file_check.stat.exists
+  delegate_to: localhost
+
+# Step 3: Setup initial Server and create Token
+- name: Setup initial server
+  ansible.builtin.include_tasks: first_server.yml
+  when:
+    - "'K8s_ControlPlanes' in group_names"
+    - hostvars[inventory_hostname].first_node | default(false)
+
+# Step 4: Wait for the token file to be created (if it doesn't exist)
+- name: Wait for token file to be created
+  wait_for:
+    path: "{{ inventory_dir }}/rke2_token.txt"
+    timeout: 600 # Maximum wait time of 10 minutes
+  when:
+    - "'K8s_ControlPlanes' in group_names"
+    - not hostvars[inventory_hostname].first_node | default(false)
+    - not token_file_stat.stat.exists # when the file not exists
+    - not ansible_check_mode
+  delegate_to: localhost 
+
+- name: Setup other servers
+  ansible.builtin.include_tasks: other_servers.yml
+  when:
+    - "'K8s_ControlPlanes' in group_names"
+    - not hostvars[inventory_hostname].first_node | default(false)
+
+- name: Configure Utilities
+  ansible.builtin.include_tasks: utilities.yml

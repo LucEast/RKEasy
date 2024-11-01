@@ -1,0 +1,16 @@
+---
+# Primary RKE2 server configuration parameters. Remove the curly braces ( {} ) and add your configuration.
+# See https://docs.rke2.io/install/install_options/server_config/ for all configuration options.
+global_rke2_config: 
+  profile: cis
+
+# Example of possible global_rke2_config.
+# global_rke2_config:
+#   selinux: true
+#   profile: cis-1.6
+#   cluster_cidr: "10.42.0.0/16"
+#   service_cidr: "10.43.0.0/16"
+#   
+
+
+# resolv_conf_file_path: "{{ playbook_dir }}/sample_files/resolv.conf"

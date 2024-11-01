@@ -1,0 +1,14 @@
+---
+mirrors:
+  docker.io:
+    endpoint:
+      - "https://example.tld"
+  index.docker.io:
+    endpoint:
+      - "https://example.tld"
+
+configs:
+  "https://example.tld":
+    auth:
+      username: Example   # this is the registry username
+      password: s3cur3P@55w0rd  # this is the registry password

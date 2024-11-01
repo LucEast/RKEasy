@@ -1,0 +1,23 @@
+---
+
+# Primary RKE2 agent configuration parameters. Remove the curly braces ( {} ) and add your configuration.
+# See https://docs.rke2.io/install/install_options/linux_agent_config/ for all configuration options.
+# rke2_config: {}
+  # debug: false  
+
+role: "agent"
+
+# See https://docs.rke2.io/install/containerd_registry_configuration/
+# Add a registry configuration file by specifying the file path on the control host
+# registry_config_file_path: "{{ playbook_dir }}/sample_files/registries.yaml"
+
+
+# See https://docs.rke2.io/install/containerd_registry_configuration/
+# Add a registry configuration file by specifying the file path on the control host
+# registry_config_file_path: "{{ playbook_dir }}/../sample_files/registries.yaml"
+
+# See https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/psa-config-templates#exempting-required-rancher-namespaces
+# Available in RKE2 1.25+
+# Add a pod security admission config file by specifying the file path on the control host
+# Requires config.yaml to include `- admission-control-config-file=/etc/rancher/rke2/pod-security-admission-config.yaml` in order for this to be honored
+# pod_security_admission_config_file_path: "{{ playbook_dir }}/../sample_files/pod-security-admission-config.yaml"

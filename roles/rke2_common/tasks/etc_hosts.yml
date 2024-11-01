@@ -1,0 +1,10 @@
+---
+- name: Write Server-IP for "{{ kube_api_server }}" to /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    regexp: ".*# via ansible"
+    line: "{{ kube_api_ip if kube_api_ip is defined else hostvars[groups['K8s_ControlPlanes'][0]].ansible_host if 'K8s_ControlPlanes' in groups and hostvars[groups['K8s_ControlPlanes'][0]].first_node | default(false) }}\t{{ kube_api_server }} # via ansible"
+    state: present
+  # when:
+  #   - ansible_facts.services['rke2-server.service'] is defined and ansible_facts.services['rke2-server.service'].state != 'running'
+  #   - ansible_facts.services['rke2-agent.service'] is defined and ansible_facts.services['rke2-agent.service'].state != 'running'

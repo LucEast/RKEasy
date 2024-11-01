@@ -1,0 +1,73 @@
+# templates/config.yaml.j2
+
+# Basis-Konfiguration für den RKE2-Server via ansible 
+{% if previous_rke2_config.stat.exists and original_server | length > 0 %}
+{{ original_server }}
+{% elif not first_node | default(false) %}
+server: "https://{{ kube_api_server | default((groups['K8s_ControlPlanes'] | selectattr('first_node', 'defined') | selectattr('first_node', 'equalto', true) | map('extract', hostvars, 'inventory_hostname') | first | default('')) if 'K8s_ControlPlanes' in groups else '') }}:9345"
+{% endif %}
+{% if previous_rke2_config.stat.exists and original_token | length > 0 %}
+{{ original_token }}
+{% elif not first_node | default(false) %}
+token: "{{ hostvars[groups['K8s_ControlPlanes'][0]].token if 'K8s_ControlPlanes' in groups and hostvars[groups['K8s_ControlPlanes'][0]].first_node | default(false) else token }}"
+{% endif %}
+
+{% if rke2_config.cluster_cidr is defined and rke2_config.cluster_cidr | length > 0 %}
+cluster-cidr: "{{ rke2_config.cluster_cidr }}"
+{% endif %}
+{% if rke2_config.service_cidr is defined and rke2_config.service_cidr | length > 0 %}
+service-cidr: "{{ rke2_config.service_cidr }}"
+{% endif %}
+{% if kube_api_server is defined and kube_api_server | length > 0 %}
+tls-san: {{ kube_api_server }}
+{% endif %}
+{% if global_rke2_config.profile is defined and global_rke2_config.profile | length > 0 %}
+# Sicherheitsprofil (cis)
+profile: {{ global_rke2_config.profile }}
+{% endif %}
+{% if pod_security_admission_config_file_path is defined and pod_security_admission_config_file_path | length > 0 %}
+pod-security-admission-config-file: /etc/rancher/rke2/pod-security-admission-config.yaml
+{% endif %}
+{% if rke2_config["node-label"] is defined and rke2_config["node-label"] | length > 0 %}
+node-labels:
+{% for label in rke2_config["node-label"] %}
+  - "{{ label }}"
+{% endfor %}
+{% endif %}
+
+{% if rke2_config["node-taint"] is defined and rke2_config["node-taint"] | length > 0 %}
+# Node-Taints (nur für Control Plane Nodes)
+node-taints:
+{% for taint in rke2_config["node-taint"] %}
+  - "{{ taint }}"
+{% endfor %}
+{% endif %}
+
+{% if node_ip is defined and node_ip | length > 0 %}
+node-ip: "{{ node_ip }}"
+{% endif %}
+
+{% if node_name is defined and node_name | length > 0 %}
+node-name: "{{ node_name }}"
+{% endif %}
+
+{% if bind_address is defined and bind_address | length > 0 %}
+bind-address: "{{ bind_address }}"
+{% endif %}
+
+{% if advertise_address is defined and advertise_address | length > 0 %}
+advertise-address: "{{ advertise_address }}"
+{% endif %}
+
+{% if node_external_ip is defined and node_external_ip | length > 0 %}
+node-external-ip: "{{ node_external_ip }}"
+{% endif %}
+
+{% if cloud_provider_name is defined and cloud_provider_name | length > 0 %}
+cloud-provider-name: "{{ cloud_provider_name }}"
+{% endif %}
+
+{% if rke2_config.cni is defined and rke2_config.cni == "cilium" %}
+cni: "{{ rke2_config.cni }}"
+{% endif %}
+# ansible ende

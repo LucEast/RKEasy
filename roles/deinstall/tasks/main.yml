@@ -1,0 +1,56 @@
+---
+# tasks file for deinstall
+
+- name: Stop the rke2-server service
+  ansible.builtin.systemd:
+    name: rke2-server
+    state: stopped
+  ignore_errors: true
+
+- name: Stop the rke2-agent service
+  ansible.builtin.systemd:
+    name: rke2-agent
+    state: stopped
+  ignore_errors: true
+
+- name: Disable the rke2-server service
+  ansible.builtin.systemd:
+    name: rke2-server
+    enabled: no
+  ignore_errors: true
+
+- name: Disable the rke2-agent service
+  ansible.builtin.systemd:
+    name: rke2-agent
+    enabled: no
+  ignore_errors: true
+
+- name: Uninstall RKE2 binaries
+  ansible.builtin.command:
+    cmd: /usr/local/bin/rke2-uninstall.sh
+  ignore_errors: true
+
+- name: Uninstall RKE2 agent binaries
+  ansible.builtin.command:
+    cmd: /usr/local/bin/rke2-agent-uninstall.sh
+  ignore_errors: true
+
+- name: Remove RKE2 configuration directory
+  ansible.builtin.file:
+    path: /etc/rancher/rke2
+    state: absent
+
+- name: Remove RKE2 data directory
+  ansible.builtin.file:
+    path: /var/lib/rancher/rke2
+    state: absent
+
+- name: Remove RKE2 log directory
+  ansible.builtin.file:
+    path: /var/log/rke2
+    state: absent
+
+- name: Remove RKE2 executables
+  ansible.builtin.file:
+    path: /usr/local/bin/rke2
+    state: absent

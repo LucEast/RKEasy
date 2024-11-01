@@ -1,0 +1,3 @@
+---
+# defaults file for rke2_agent
+kubernetes_api_server_host: "{{ kube_api_server | default((groups['K8s_ControlPlanes'] | selectattr('first_node', 'defined') | selectattr('first_node', 'equalto', true) | map('extract', hostvars, 'inventory_hostname') | first | default('')) if 'K8s_ControlPlanes' in groups else '') }}"

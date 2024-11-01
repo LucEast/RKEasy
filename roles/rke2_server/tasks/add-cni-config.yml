@@ -1,0 +1,47 @@
+---
+- name: Create the /etc/rancher/rke2 config dir
+  ansible.builtin.file:
+    path: /etc/rancher/rke2
+    state: directory
+    recurse: yes
+
+- name: Copy Cilium CNI configuration
+  vars:
+    file_contents: "{{ lookup('file', cni_config_file_path) }}"
+  template:
+    src: ansible_header.j2
+    dest: /var/lib/rancher/rke2/server/manifests/rke2-cilium-config.yaml
+    owner: root
+    group: root
+    mode: "0644"
+    backup: true
+  when:
+    - cni_config_file_path is defined
+    - cni_config_file_path | length > 0
+    - rke2_config.cni == 'cilium'
+  notify: Restart rke2-server
+
+- name: Remove Cilium CNI config file
+  when:
+    - cni_config_file_path is not defined or cni_config_file_path|length == 0
+  block:
+    - name: Check that the CNI config file exists
+      ansible.builtin.stat:
+        path: "/var/lib/rancher/rke2/server/manifests/rke2-cilium-config.yaml"
+      register: stat_result
+
+    - name: "Check that the CNI config file has ansible managed comments"
+      ansible.builtin.lineinfile:
+        name: "/var/lib/rancher/rke2/server/manifests/rke2-cilium-config.yaml"
+        line: "## This is an Ansible managed file, contents will be overwritten ##"
+        state: present
+      check_mode: yes
+      register: ansible_managed_check
+      when: stat_result.stat.exists | bool
+
+    - name: Remove the CNI config file if exists and has ansible managed comments
+      ansible.builtin.file:
+        path: "/var/lib/rancher/rke2/server/manifests/rke2-cilium-config.yaml"
+        state: absent
+      when:
+        - ansible_managed_check.changed | bool

@@ -1,0 +1,3 @@
+---
+- name: Install rke2
+  import_playbook: playbooks/cluster.yml

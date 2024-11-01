@@ -1,0 +1,15 @@
+---
+# tasks file for cluster_manifest
+
+- name: Add cluster manifest addons files
+  ansible.builtin.copy:
+    src: "{{ cluster_manifest_config_file_path }}"
+    dest: "/var/lib/rancher/rke2/server/manifests/"
+    mode: "0640"
+    owner: root
+    group: root
+  when:
+    - "'K8s_ControlPlanes' in group_names"
+    - hostvars[inventory_hostname].first_node | default(false)
+    - cluster_manifest_config_file_path is defined
+    - cluster_manifest_config_file_path | length > 0

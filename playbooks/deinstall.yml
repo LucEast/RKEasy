@@ -1,0 +1,6 @@
+---
+- name: Deinstall play
+  hosts: all
+  become: true
+  roles:
+    - role: deinstall
