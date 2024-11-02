@@ -12,15 +12,15 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v2
 
-      - name: Set up Python (for Ansible)
-        uses: actions/setup-python@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          python-version: "3.x"
+          node-version: "20.8.1"
 
-      - name: Install semantic-release
-        run: npm install -g semantic-release
+      - name: Install dependencies
+        run: npm install
 
       - name: Run Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: semantic-release
+        run: npx semantic-release
