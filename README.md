@@ -1,5 +1,7 @@
 # Sprinkle - Simplified RKE2 Cluster Deployment
 
+![GitHub License](https://img.shields.io/github/license/LucEast/Sprinkle)
+
 Sprinkle is an open-source project aimed at making RKE2 Kubernetes cluster deployment and management easy and automated. Inspired by Kubespray and based on Ansible playbooks, Sprinkle enables you to set up and manage RKE2 clusters on various infrastructures quickly and efficiently.
 
 ## Features
