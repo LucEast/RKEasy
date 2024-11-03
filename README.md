@@ -76,6 +76,6 @@ Contributions are welcome! Fork the repository, create a new branch, and submit 
 
 ## License
 
-Sprinkle is licensed under the [MIT License](LICENSE).
+Sprinkle is licensed under the [Apache-2.0 License](LICENSE).
 
 Let me know if you’d like to fine-tune any part or add more details!
