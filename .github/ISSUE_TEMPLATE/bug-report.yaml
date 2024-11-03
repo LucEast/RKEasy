@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-description: Report a bug encountered while using Kubespray
+description: Report a bug encountered while using Sprinkle
 labels: ["kind/bug"]
 body:
   - type: markdown
@@ -61,7 +61,7 @@ body:
       required: true
 
   - type: input
-    id: kubespray_version
+    id: sprinkle_version
     attributes:
       label: Version of Sprinkle (commit)
       placeholder: 'git rev-parse --short HEAD'

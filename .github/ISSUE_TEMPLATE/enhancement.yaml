@@ -1,6 +1,6 @@
 ---
 name: Enhancement Request
-description: Suggest an enhancement to the Kubespray project
+description: Suggest an enhancement to the Sprinkle project
 labels: ["kind/feature"]
 body:
   - type: markdown

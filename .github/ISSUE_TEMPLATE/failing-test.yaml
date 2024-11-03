@@ -1,6 +1,6 @@
 ---
 name: Failing Test
-description: Report test failures in Kubespray CI jobs
+description: Report test failures in Sprinkle CI jobs
 labels: ["kind/failing-test"]
 body:
   - type: markdown
