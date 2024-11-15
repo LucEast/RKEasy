@@ -1,7 +1,7 @@
 ---
 namespace: luceast
 description: Deploy a production ready Kubernetes cluster
-name: sprinkle
+name: RKEasy
 version: 2.27.0
 readme: README.md
 authors:
@@ -10,9 +10,9 @@ tags:
   - infrastructure
   - kubernets
   - rke2
-repository: https://github.com/LucEast/Sprinkle
-issues: https://github.com/LucEast/Sprinkle/issues
-documentation: https://github.com/LucEast/Sprinkle
+repository: https://github.com/LucEast/RKEasy
+issues: https://github.com/LucEast/RKEasy/issues
+documentation: https://github.com/LucEast/RKEasy
 license_file: LICENSE
 dependencies:
   ansible.utils: '>=2.5.0'

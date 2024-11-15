@@ -1,11 +1,11 @@
 ---
 name: Failing Test
-description: Report test failures in Sprinkle CI jobs
+description: Report test failures in RKEasy CI jobs
 labels: ["kind/failing-test"]
 body:
   - type: markdown
     attributes:
-      value: Please only use this template for submitting reports about failing tests in Sprinkle CI jobs
+      value: Please only use this template for submitting reports about failing tests in RKEasy CI jobs
   - type: textarea
     id: failing_jobs
     attributes:

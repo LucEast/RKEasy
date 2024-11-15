@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-description: Report a bug encountered while using Sprinkle
+description: Report a bug encountered while using RKEasy
 labels: ["kind/bug"]
 body:
   - type: markdown
@@ -61,9 +61,9 @@ body:
       required: true
 
   - type: input
-    id: sprinkle_version
+    id: RKEasy_version
     attributes:
-      label: Version of Sprinkle (commit)
+      label: Version of RKEasy (commit)
       placeholder: 'git rev-parse --short HEAD'
     validations:
       required: true

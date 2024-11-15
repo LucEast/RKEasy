@@ -1,6 +1,6 @@
 ---
 name: Enhancement Request
-description: Suggest an enhancement to the Sprinkle project
+description: Suggest an enhancement to the RKEasy project
 labels: ["kind/feature"]
 body:
   - type: markdown

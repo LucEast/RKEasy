@@ -1,8 +1,8 @@
-# Sprinkle - Simplified RKE2 Cluster Deployment
+# RKEasy - Simplified RKE2 Cluster Deployment
 
-![GitHub License](https://img.shields.io/github/license/LucEast/Sprinkle)
+![GitHub License](https://img.shields.io/github/license/LucEast/RKEasy)
 
-Sprinkle is an open-source project aimed at making RKE2 Kubernetes cluster deployment and management easy and automated. Inspired by Kubespray and based on Ansible playbooks, Sprinkle enables you to set up and manage RKE2 clusters on various infrastructures quickly and efficiently.
+RKEasy is an open-source project aimed at making RKE2 Kubernetes cluster deployment and management easy and automated. Inspired by Kubespray and based on Ansible playbooks, RKEasy enables you to set up and manage RKE2 clusters on various infrastructures quickly and efficiently.
 
 ## Features
 
@@ -14,7 +14,7 @@ Sprinkle is an open-source project aimed at making RKE2 Kubernetes cluster deplo
 
 ## Prerequisites
 
-- Ansible: Sprinkle is based on Ansible and uses playbooks for installation and configuration.
+- Ansible: RKEasy is based on Ansible and uses playbooks for installation and configuration.
 - Target Infrastructure: Supports physical servers and several cloud providers.
 - Access: SSH access and the necessary permissions on target machines.
 
@@ -25,8 +25,8 @@ This playbook requires ansible.utils to run properly. Please see <https://docs.a
 1. Clone the Repository:
 
     ```bash
-    git clone <https://github.com/LucEast/Sprinkle.git>
-    cd Sprinkle
+    git clone <https://github.com/LucEast/RKEasy.git>
+    cd RKEasy
     ```
 
 2. Install requirements:
@@ -53,7 +53,7 @@ This playbook requires ansible.utils to run properly. Please see <https://docs.a
 ## Usage
 
 - Cluster Deployment: After configuration, deploy the cluster using the deploy.yml playbook.
-- Cluster Management: Sprinkle offers optional playbooks for adding/removing nodes and updating the cluster.
+- Cluster Management: RKEasy offers optional playbooks for adding/removing nodes and updating the cluster.
 
 ## Configuration
 
@@ -76,6 +76,6 @@ Contributions are welcome! Fork the repository, create a new branch, and submit 
 
 ## License
 
-Sprinkle is licensed under the [Apache-2.0 License](LICENSE).
+RKEasy is licensed under the [Apache-2.0 License](LICENSE).
 
 Let me know if you’d like to fine-tune any part or add more details!
