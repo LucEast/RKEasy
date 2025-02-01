@@ -1,3 +1,0 @@
----
-- name: Delete the rke2 cluster
-  import_playbook: playbooks/deinstall.yml

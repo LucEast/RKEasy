@@ -18,7 +18,12 @@ RKEasy is an open-source project aimed at making RKE2 Kubernetes cluster deploym
 - Target Infrastructure: Supports physical servers and several cloud providers.
 - Access: SSH access and the necessary permissions on target machines.
 
-## Installation
+## Usage
+
+- Cluster Deployment: After configuration, deploy the cluster using the deploy_cluster.yml playbook.
+<!-- - Cluster Management: RKEasy offers optional playbooks for adding/removing nodes and updating the cluster. -->
+
+### Installation
 
 This playbook requires ansible.utils to run properly. Please see <https://docs.ansible.com/ansible/latest/galaxy/user_guide.html#installing-a-collection-from-galaxy> for more information about how to install this.
 
@@ -47,13 +52,15 @@ This playbook requires ansible.utils to run properly. Please see <https://docs.a
 7. Deploy the Cluster:
 
     ```bash
-    ansible-playbook -i inventory/mycluster/inventory.yml playbooks/deploy_cluster.yml [--private-key=~/.ssh/mykey]
+    ansible-playbook -i inventory/mycluster/inventory.yml deploy_cluster.yml [--private-key=~/.ssh/mykey]
     ```
 
-## Usage
+### Remove the Cluster
 
-- Cluster Deployment: After configuration, deploy the cluster using the deploy_cluster.yml playbook.
-<!-- - Cluster Management: RKEasy offers optional playbooks for adding/removing nodes and updating the cluster. -->
+```bash
+ansible-playbook -i inventory/mycluster/inventory.yml remove_cluster.yml [--private-key=~/.ssh/mykey]
+```
+
 
 ## Configuration
 

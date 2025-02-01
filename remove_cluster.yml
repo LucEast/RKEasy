@@ -1,0 +1,3 @@
+---
+- name: Remove the rke2 cluster
+  import_playbook: playbooks/remove_cluster.yml

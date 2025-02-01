@@ -1,0 +1,3 @@
+---
+- name: Deploy rke2 cluster
+  import_playbook: playbooks/deploy_cluster.yml
