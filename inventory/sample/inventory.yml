@@ -9,29 +9,29 @@ K8s_Cluster:
   children:
     K8s_ControlPlanes:
       hosts:
-        rkedevcp01.internal:
+        control-plane01:
           ansible_host: 192.168.1.50 # Change to your CP-IP
           # node_name: # Change to your node-name (Optional)
           first_node: True # True|False # Just the first Control-Plane, which will provide the token.
-        rkedevcp02.internal:
+        control-plane02:
           ansible_host: 192.168.1.51 # Change to your CP-IP
           # node_name: # Change to your node-name (Optional)
-        rkedevcp03.internal:
+        control-plane03:
           ansible_host: 192.168.1.52 # Change to your CP-IP
           # node_name: # Change to your node-name (Optional)
 
     K8s_Worker:
       hosts:
-        rkedevw01.internal:
+        agent01:
           ansible_host: 192.168.1.54 # Change to your worker-IP
           # node_name: # Change to your node-name (Optional)
           # node_labels:
-        rkedevw02.internal:
+        agent02:
           ansible_host: 192.168.1.55 # Change to your worker-IP
           # node_name: # Change to your node-name (Optional)
           # node_labels:
-        rkedevw03.internal:
+        agent03:
           ansible_host: 192.168.1.56 # Change to your worker-IP
-          # ansible_user: owlit # Change to your ansible-user
+          # ansible_user: ansible # Change to your ansible-user
           # node_name: # Change to your node-name (Optional)
           # node_labels:

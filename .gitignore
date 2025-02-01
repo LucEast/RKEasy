@@ -8,3 +8,8 @@
 
 tarball_install/*
 !tarball_install/README.md
+
+inventory/*
+!inventory/sample
+
+.vscode

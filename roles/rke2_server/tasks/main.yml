@@ -20,7 +20,7 @@
   ansible.builtin.file:
     path: "{{ inventory_dir }}/rke2_token.txt"
     state: absent
-  when: file_check.stat.exists
+  when: token_file_stat.stat.exists
   delegate_to: localhost
 
 # Step 3: Setup initial Server and create Token

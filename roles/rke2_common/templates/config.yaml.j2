@@ -37,7 +37,7 @@ node-labels:
 
 {% if rke2_config["node-taint"] is defined and rke2_config["node-taint"] | length > 0 %}
 # Node-Taints (nur für Control Plane Nodes)
-node-taints:
+node-taint:
 {% for taint in rke2_config["node-taint"] %}
   - "{{ taint }}"
 {% endfor %}

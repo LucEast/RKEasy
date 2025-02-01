@@ -32,7 +32,7 @@ This playbook requires ansible.utils to run properly. Please see <https://docs.a
 2. Install requirements:
 
     ```bash
-    ansible-galaxy install -r galaxy.yml
+    ansible-galaxy install -r requirements.yaml
     ```
 
 3. Install Ansible and Dependencies
@@ -47,13 +47,13 @@ This playbook requires ansible.utils to run properly. Please see <https://docs.a
 7. Deploy the Cluster:
 
     ```bash
-    ansible-playbook -i inventory.yml deploy.yml
+    ansible-playbook -i inventory/mycluster/inventory.yml playbooks/deploy_cluster.yml [--private-key=~/.ssh/mykey]
     ```
 
 ## Usage
 
-- Cluster Deployment: After configuration, deploy the cluster using the deploy.yml playbook.
-- Cluster Management: RKEasy offers optional playbooks for adding/removing nodes and updating the cluster.
+- Cluster Deployment: After configuration, deploy the cluster using the deploy_cluster.yml playbook.
+<!-- - Cluster Management: RKEasy offers optional playbooks for adding/removing nodes and updating the cluster. -->
 
 ## Configuration
 
